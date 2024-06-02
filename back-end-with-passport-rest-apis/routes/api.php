@@ -51,6 +51,8 @@ Route::group(['prefix' => '/v1', 'middleware' => 'auth:api'], function () {
     Route::put('/update/profile/headline', [\App\Http\Controllers\UserController::class, 'updateProfileHeadline']);
     Route::put('/update/profile/information', [\App\Http\Controllers\UserController::class, 'updateProfileInformation']);
     Route::post('/update/setting', [\App\Http\Controllers\UserController::class, 'updateSetting']);
+    Route::post('/update/profile/picture', [\App\Http\Controllers\UserController::class, 'updateProfilePicture']);
+
 
     //logout
     Route::post('/logout', [\App\Http\Controllers\UserController::class, 'logoutUser']);

@@ -68,7 +68,7 @@ class UserController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string',
-            'mobile' => 'required|max:10',
+            'mobile' => 'required|max:12',
             'description' => 'required|string',
             'location' => 'required|string'
         ]);
@@ -95,5 +95,20 @@ class UserController extends Controller
                 'message' => 'error while logged out'
             ]);
         }
+    }
+    public function updateProfilePicture(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'profile_picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+        ]);
+        if ($validator->fails()) {
+            $error = $validator->errors()->first();
+            return response()->json(['status' => false, 'message' => $error])->setStatusCode(400);
+        }
+        $email = Auth::user()->email;
+        $profilePicture = $request->file('profile_picture');
+        $profilePictureName = time() . '_' . $profilePicture->getClientOriginalName();
+        $profilePicture->storeAs('public/profile_pictures', $profilePictureName);
+        return $this->user->updateProfilePicture($email, $profilePictureName);
     }
 }
