@@ -7,9 +7,9 @@
     </title>
     <?php include "../include/css.php" ?>
 </head>
-<body class="g-sidenav-show  bg-gray-100">
+<body class="g-sidenav-show bg-gray-100">
 <?php include "../include/sidebar.php" ?>
-<main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ">
+<main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg">
     <div class="main-content position-relative bg-gray-100 max-height-vh-100 h-100">
         <!-- Navbar -->
         <nav class="navbar navbar-main navbar-expand-lg bg-transparent shadow-none position-absolute px-4 w-100 z-index-2">
@@ -28,7 +28,7 @@
                 <div class="row gx-4">
                     <div class="col-auto">
                         <div class="avatar avatar-xl position-relative">
-                            <img src="../assets/img/bruce-mars.jpg" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+                            <img src="../assets/img/bruce-mars.jpg" alt="profile_image" class="w-100 border-radius-lg shadow-sm" id="profileImage">
                         </div>
                     </div>
                     <div class="col-auto my-auto">
@@ -49,6 +49,11 @@
                                         <i class="fas fa-user-edit text-secondary text-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Profile" aria-hidden="true"></i><span class="sr-only">Edit Profile</span>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="javascript:;" data-toggle="modal" data-target="#uploadPictureModel" id="uploadPictureModel">
+                                        <i class="fas fa-camera text-secondary text-sm" data-bs-toggle="tooltip" data-bs-placement="top" title="Change Picture" aria-hidden="true"></i><span class="sr-only">Change Picture</span>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -67,19 +72,19 @@
                             <ul class="list-group">
                                 <li class="list-group-item border-0 px-0">
                                     <div class="form-check form-switch ps-0">
-                                        <input class="form-check-input ms-auto" type="checkbox"  id="email_follow_me">
-                                        <label class="form-check-label text-body ms-3 text-truncate w-80 mb-0" for="email_follow_me"   >Email me when someone follows me</label>
+                                        <input class="form-check-input ms-auto" type="checkbox" id="email_follow_me">
+                                        <label class="form-check-label text-body ms-3 text-truncate w-80 mb-0" for="email_follow_me">Email me when someone follows me</label>
                                     </div>
                                 </li>
                                 <li class="list-group-item border-0 px-0">
                                     <div class="form-check form-switch ps-0">
                                         <input class="form-check-input ms-auto" type="checkbox" id="email_answers_my_post">
-                                        <label class="form-check-label text-body ms-3 text-truncate w-80 mb-0" for="email_answers_my_post" >Email me when someone answers on my post</label>
+                                        <label class="form-check-label text-body ms-3 text-truncate w-80 mb-0" for="email_answers_my_post">Email me when someone answers on my post</label>
                                     </div>
                                 </li>
                                 <li class="list-group-item border-0 px-0">
                                     <div class="form-check form-switch ps-0">
-                                        <input class="form-check-input ms-auto" type="checkbox"  id="email_someone_mentions_me">
+                                        <input class="form-check-input ms-auto" type="checkbox" id="email_someone_mentions_me">
                                         <label class="form-check-label text-body ms-3 text-truncate w-80 mb-0" for="email_someone_mentions_me">Email me when someone mentions me</label>
                                     </div>
                                 </li>
@@ -89,19 +94,19 @@
                                 <li class="list-group-item border-0 px-0">
                                     <div class="form-check form-switch ps-0">
                                         <input class="form-check-input ms-auto" type="checkbox" id="new_launches_projects">
-                                        <label class="form-check-label text-body ms-3 text-truncate w-80 mb-0" for="new_launches_projects" >New launches and projects</label>
+                                        <label class="form-check-label text-body ms-3 text-truncate w-80 mb-0" for="new_launches_projects">New launches and projects</label>
                                     </div>
                                 </li>
                                 <li class="list-group-item border-0 px-0">
                                     <div class="form-check form-switch ps-0">
-                                        <input class="form-check-input ms-auto" type="checkbox" id="monthly_product_updates" >
-                                        <label class="form-check-label text-body ms-3 text-truncate w-80 mb-0" for="monthly_product_updates" >Monthly product updates</label>
+                                        <input class="form-check-input ms-auto" type="checkbox" id="monthly_product_updates">
+                                        <label class="form-check-label text-body ms-3 text-truncate w-80 mb-0" for="monthly_product_updates">Monthly product updates</label>
                                     </div>
                                 </li>
                                 <li class="list-group-item border-0 px-0 pb-0">
                                     <div class="form-check form-switch ps-0">
                                         <input class="form-check-input ms-auto" type="checkbox" id="subscribe_to_newsletter">
-                                        <label class="form-check-label text-body ms-3 text-truncate w-80 mb-0" for="subscribe_to_newsletter" >Subscribe to newsletter</label>
+                                        <label class="form-check-label text-body ms-3 text-truncate w-80 mb-0" for="subscribe_to_newsletter">Subscribe to newsletter</label>
                                     </div>
                                 </li>
                             </ul>
@@ -136,26 +141,27 @@
                 </div>
             </div>
         </div>
-        <!-- Modal -->
+
+        <!-- Modal Update Profile -->
         <div class="modal fade" id="userModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Update Profile</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <form id="updateUser">
                         <div class="modal-body">
-                                <div class="mb-3">
-                                    <label for="name">Enter Name</label>
-                                    <input type="text" class="form-control" placeholder="Name" name="name"  id="fname">
-                                </div>
-                                <div class="mb-3">
-                                    <label for="name">Enter headline</label>
-                                    <input type="text" class="form-control" placeholder="title" name="title" id="ftitle">
-                                </div>
+                            <div class="mb-3">
+                                <label for="fname">Enter Name</label>
+                                <input type="text" class="form-control" placeholder="Name" name="name" id="fname">
+                            </div>
+                            <div class="mb-3">
+                                <label for="ftitle">Enter headline</label>
+                                <input type="text" class="form-control" placeholder="title" name="title" id="ftitle">
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close_1">Close</button>
@@ -166,12 +172,12 @@
             </div>
         </div>
 
-        <!-- Modal Information-->
+        <!-- Modal Update Profile Information -->
         <div class="modal fade" id="userInfoModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Update Profile Information</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -179,26 +185,25 @@
                     <form id="updateUserInfo">
                         <div class="modal-body">
                             <div class="mb-3">
-                                <label for="name">Enter Name</label>
-                                <input type="text" class="form-control" placeholder="Name" name="name"  id="infoName">
+                                <label for="infoName">Enter Name</label>
+                                <input type="text" class="form-control" placeholder="Name" name="name" id="infoName">
                             </div>
                             <div class="mb-3">
-                                <label for="name">Enter Description</label>
-                                <textarea name="description" id="infoDescription" class="form-control" placeholder="Description"  cols="30" rows="10"></textarea>
+                                <label for="infoDescription">Enter Description</label>
+                                <textarea name="description" id="infoDescription" class="form-control" placeholder="Description" cols="30" rows="10"></textarea>
                             </div>
                             <div class="mb-3">
-                                <label for="name">Enter Mobile</label>
-                                <input type="text" class="form-control" placeholder="Mobile" name="mobile"  id="infoMobile">
+                                <label for="infoMobile">Enter Mobile</label>
+                                <input type="text" class="form-control" placeholder="Mobile" name="mobile" id="infoMobile">
                             </div>
                             <div class="mb-3">
-                                <label for="name">Enter Email</label>
-                                <input type="text" class="form-control" placeholder="email" name="email"  id="infoEmail">
+                                <label for="infoEmail">Enter Email</label>
+                                <input type="text" class="form-control" placeholder="email" name="email" id="infoEmail">
                             </div>
                             <div class="mb-3">
-                                <label for="name">Enter Location</label>
-                                <input type="text" class="form-control" placeholder="location" name="location"  id="infoLocation">
+                                <label for="infoLocation">Enter Location</label>
+                                <input type="text" class="form-control" placeholder="location" name="location" id="infoLocation">
                             </div>
-
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close_2">Close</button>
@@ -208,9 +213,59 @@
                 </div>
             </div>
         </div>
+
+        <!-- Modal Upload Picture -->
+        <div class="modal fade" id="uploadPictureModel" tabindex="-1" role="dialog" aria-labelledby="uploadPictureModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="uploadPictureModalLabel">Upload Profile Picture</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form id="uploadProfilePicture" enctype="multipart/form-data">
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="profilePicture">Choose Picture</label>
+                                <input type="file" class="form-control" name="profile_picture" id="profilePicture" accept="image/*">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Upload Picture</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </main>
 <?php include "../include/js.php" ?>
 <script src="../assets/js/custom/profile.js"></script>
+<script>
+    document.getElementById('uploadProfilePicture').addEventListener('submit', function(e) {
+        e.preventDefault();
+        var formData = new FormData(this);
+        fetch('/api/v1/update/profile/picture', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('token')
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status) {
+                document.getElementById('profileImage').src = '/storage/' + data.path;
+                alert('Profile picture updated successfully');
+                document.getElementById('close_upload_modal').click();
+            } else {
+                alert('Error: ' + data.message);
+            }
+        })
+        .catch(error => console.error('Error:', error));
+    });
+</script>
 </body>
 </html>

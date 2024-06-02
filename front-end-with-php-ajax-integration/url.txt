@@ -1,0 +1,1 @@
+http://localhost/laravel_passport_rest_api_with_front_end/front-end-with-php-ajax-integration/register.php
